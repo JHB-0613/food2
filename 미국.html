@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미국 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 화면 중앙 상단 정렬을 위한 네비게이션 바 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            max-width: 100%;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .p-desc {
+            text-align: center; 
+            color: #666;
+            margin-bottom: 40px;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 화면 중앙 상단에 정렬된 네비게이션 바 -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">인도</a>
+        <a href="터키.html" class="nav-btn">터키</a>
+        <a href="이탈리아.html" class="nav-btn">이탈리아</a>
+        <a href="프랑스.html" class="nav-btn">프랑스</a>
+        <a href="미국.html" class="nav-btn active">미국</a>
+        <a href="스페인.html" class="nav-btn">스페인</a>
+    </div>
+
+    <h1>미국 음식문화 학습 퀴즈</h1>
+    <p class="p-desc">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <!-- ==========================================
+         I. OX 문제 (10문항)
+         ========================================== -->
+    <h2>I. OX 문제</h2>
+
+    <!-- OX 1 -->
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 1607년 영국 식민지 이주자들이 버지니아 지역에 처음 상륙했을 당시, 밀과 호밀 종자 재배에 곧바로 성공하여 자급자족을 이루었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'X', '정답입니다! 초기 영국 식민지 이주자들은 버지니아 지역에서 밀과 호밀 종자 재배에 실패했습니다. 이후 아메리카 인디언들로부터 옥수수 등의 작물과 조리법을 배워 생존할 수 있었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 2 -->
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. 아프리카 노예(서아프리카)를 통해 미국에 유입된 식재료 및 요리 문화에는 수박, 오크라, 얌, 동부콩, 바베큐 등이 포함된다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'O', '정답입니다! 아프리카인들은 수박, 오크라, 얌, 동부콩, 여러 가지 곡물의 씨앗과 함께 바베큐 문화를 들여와 미국 남부 요리의 기초가 되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 3 -->
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. 뉴욕의 시그니처인 '록스 베이글 샌드위치'에 사용되는 베이글과 록스(숙성 연어)는 본래 뉴욕에 이민 온 유대인들에 의해 크림치즈와 결합되어 탄생한 미국적인 음식이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'O', '정답입니다! 1880~1942년 사이에 정착한 유대인들이 자신들의 전통 음식인 베이글, 록스를 뉴욕에서 개발된 크림치즈와 결합하여 창안한 대표적인 조합 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 4 -->
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. 미국 남부의 '크레올(creole) 요리'는 캐나다 동부 아카디아 지역에서 추방되어 루이지애나로 이주한 프랑스인들이 만들어 먹기 시작한 소박한 사골 요리이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'X', '정답입니다! 설명된 요리는 프랑스 이주민(아카디안)들이 전파한 \'케이준(cajun) 요리\'입니다. 크레올 요리는 루이지애나 뉴올리언스에 정착한 부유한 유럽인 가문의 하인들이 개발한 세련되고 농후한 도시풍 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 5 -->
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. 아메리카 인디언들이 수천 년 전에 고안한 '팝콘'은 1885년 찰스 크레터스가 제조기를 발명하며 대중화되었고, 1912년부터 극장에서 판매되기 시작했다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'O', '정답입니다! 팝콘은 고대 인디언들이 옥수수를 익혀 먹던 최초의 방법이었으며, 이후 제조기 발명과 극장 유입을 통해 대표적인 스낵으로 정착했습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 6 -->
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. 미국의 중서부 지역(12개 주)은 농축산업이 주산업이며, 오대호 근처에서는 송어, 농어와 함께 '월라이(walleye)'라는 물고기를 주로 잡는다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'O', '정답입니다! 중서부 지역은 로키산맥 동쪽의 거대한 옥수수·밀·감자밭 지역이며, 오대호 연안을 중심으로 송어, 농어, 월라이, 빙어 등의 수산물이 활용됩니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 7 -->
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. '캘리포니아롤'은 날생선과 김을 낯설어하는 미국인들을 위해 게살, 아보카도, 오이를 넣고 밥이 겉으로 나오도록 말아낸 퓨전 스시로, 1960년대 LA의 스시 셰프 이치로 마시타가 개발했다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'O', '정답입니다! 일본 음식인 스시에 캘리포니아의 풍부한 식재료를 기호에 맞게 결합하여 대히트를 친 캘리포니아 퀴진의 대표 주자입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 8 -->
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. 하와이 원주민의 주식인 '포이(poi)'는 통돼지에 소금을 뿌려 이무(지하 화덕)에 묻어 오랜 시간 쪄내는 고기 요리이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'X', '정답입니다! 설명된 지하 화덕 통돼지 구이는 \'칼루아피그(kalua pig)\'입니다. \'포이(poi)\'는 타로라는 토란 뿌리를 찧고 갈아서 걸쭉하게 끓인 죽입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 9 -->
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 미국 와인의 80% 이상을 생산하는 캘리포니아 와인(나파, 소노마 계곡)은 1976년 '파리의 심판' 사건을 통해 세계적인 우수성을 공식 인정받았다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'O', '정답입니다! 1976년 블라인드 테스팅인 파리의 심판에서 프랑스 와인을 제치고 우승을 차지하며 미국 와인의 위상을 전 세계에 알렸습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 10 -->
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 미국의 대표적인 명절인 추수감사절(Thanksgiving day)은 10월 마지막 주 금요일이며, 잭오랜턴 호박 등을 활용해 축제를 즐긴다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'X', '정답입니다! 10월 31일(마지막 주 금요일)에 호박으로 잭오랜턴을 만드는 축제는 \'할로윈(Halloween)\'입니다. 추수감사절은 11월 넷째 목요일이며 칠면조 구이를 먹습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         II. 단답형 문제 (10문항)
+         ========================================== -->
+    <h2>II. 단답형 문제</h2>
+
+    <!-- 단답 1 -->
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 초기 정착민들이 바닷가에서 쉽게 잡을 수 있었던 조개류에 우유, 감자, 크림 등을 넣고 걸쭉하게 끓여 정착한 미국 북동부 뉴잉글랜드 지역의 대표적인 수프 명칭은 무엇인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['뉴잉글랜드 크램 차우더', '뉴잉글랜드 크램차우더', '크램 차우더', '크램차우더'], '정답: 뉴잉글랜드 크램 차우더 | 보스턴, 매사추세츠 등의 항구도시에서 발달한 미국의 대중적인 조개 크림 수프입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 2 -->
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 미국 남부 루이지애나 지역에서 발달한 쌀 요리로 소시지, 고기, 채소와 소프리토(sofrito)를 한데 넣고 끓여 밥을 지어내는 대표적인 크레올·케이준 음식은 무엇인가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['잠발라야', 'jambalaya'], '정답: 잠발라야(jambalaya) | 다인종 노예 및 이주민 문화가 결합되어 탄생한 남부 루이지애나의 대표 쌀 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 3 -->
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 새우나 크로우피쉬(가재) 등에 채소와 아프리카 유래 작물인 '오크라'를 넣어 끓인 걸쭉한 스튜로, 주로 밥 위에 얹어 먹는 미국 남부의 대표 요리는 무엇인가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['검보', 'gumbo'], '정답: 검보(gumbo) | 잠발라야와 함께 미국 남부를 대표하는 걸쭉하고 이국적인 스튜 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 4 -->
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 미국 서부 로키산맥 지역(몬태나, 아이다호 등)에서 쇠고기와 함께 유명하며, 특히 대규모 밭이 조성되어 전국적으로 유통되는 이 지역 특산 작물은 무엇인가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['감자', '아이다호 감자'], '정답: 감자 | 아이다호 주는 거대한 감자밭이 펼쳐져 있는 미국 내 핵심 감자 주산지입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 5 -->
+    <div class="question-block" id="short5">
+        <div class="question-title">5. 주먹 크기의 고기 덩어리(돼지, 오리, 생선 등)를 타로 잎과 넓적한 티(ti)나무 잎사귀로 서너 개씩 감싸 오랜 시간 푹 쪄내는 하와이 전통 음식의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['라우라우', 'laulau'], '정답: 라우라우(laulau) | 잎사귀에 싸서 쪄내는 방식을 사용하는 하와이 원주민의 전통 찜 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 6 -->
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 생 참치를 주사위 모양으로 네모나게 잘라 참기름과 간장 소스에 버무려 채소와 함께 먹는 하와이식 전통 샐러드(회무침 형태)의 이름은 무엇인가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['포케', 'poke'], '정답: 포케(poke) | 오늘날 웰빙 음식으로 전 세계에서 큰 인기를 누리고 있는 참치 기반 하와이 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 7 -->
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 주먹밥 위에 통조림 육가공품 토핑을 얹어 김으로 감싼 음식으로, 일본 무스비 문화와 하트 모양 가공육이 결합하여 하위인들이 매우 즐겨 먹는 이 스낵의 이름은 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['스팸 무스비', '스팸무스비'], '정답: 스팸 무스비 | 하와이에 정착한 일본 이민자 문화와 미국식 스팸이 융합된 독특한 로컬 음식입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 8 -->
+    <div class="question-block" id="short8">
+        <div class="question-title">8. 소고기 부위 중 안심(Tenderloin)과 등심(Top loin) 사이에 T자 모양의 뼈가 있어, 두 가지 맛을 한 번에 석쇠나 팬에 구워 즐길 수 있는 이 스테이크의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['티본 스테이크', '티본스테이크', 't-bone steak'], '정답: 티본 스테이크(T-bone steak) | 숏로인(Short Loin) 부위에서 정형되며, 뼈를 중심으로 양옆의 안심과 채끝/등심살을 동시에 맛볼 수 있습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 9 -->
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 미국의 식당에서 식사를 마친 후, 서빙을 담당한 직원에게 영수증에 표기된 세전 음식 값의 15~20% 정도를 거의 의무적으로 얹어 지불해야 하는 서비스 요금(팁)의 또 다른 영문 표기는 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['gratuity', '그래튜이티'], '정답: gratuity | 미국 식문화에서 팁(Tip)과 동일한 의미로 영수증에 자주 인쇄되는 단어입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 10 -->
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 롤빵 사이에 부드러운 소시지, 다진 양파, 오이피클, 머스터드 등을 끼워 먹는 음식으로, 야구장이나 풋볼 경기장 관전 시 길거리 음식으로 큰 사랑을 받는 이것은 무엇인가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['핫도그', 'hot dog', '핫 도그'], '정답: 핫도그(hot dog) | 미국의 대중 문화 및 패스트푸드 발달과 궤를 같이하는 대표적인 길거리 스낵입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         III. 서술형 문제 (3문항)
+         ========================================== -->
+    <h2>III. 서술형 문제</h2>
+
+    <!-- 서술 1 -->
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 미국 남부 음식의 대표 주자이자 세계화된 '서던 프라이드치킨(Southern fried chicken)'이 과거 아프리카계 흑인 노예들의 혹독한 노동 환경 및 생존 방식(소울 푸드)과 어떻게 연관되어 탄생했는지 그 배경을 구체적으로 서술하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '프라이드치킨은 백인 농장주들이 먹지 않고 버린 닭의 날개, 발, 목 등 뼈가 많고 살이 없는 부위를 흑인 노예들이 주워 모으면서 시작되었습니다. 노예들은 이를 기름에 바싹 튀겨냈는데, 기름에 튀기면 단단한 뼈까지 통째로 씹어 먹을 수 있었고 혹독한 노동을 견디기 위한 높은 열량을 효과적으로 섭취할 수 있었습니다. 또한 조리법이 간단하며 수분이 적어 더운 남부 날씨에도 잘 상하지 않는다는 생존 지혜가 결합된 아픈 역사의 소울 푸드입니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 2 -->
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 미국 식문화의 큰 특징인 '패스트푸드(Fast food)'가 고도로 발달하게 된 배경과 이로 인해 초래된 미국인들의 영양 섭취 및 건강 상의 문제점을 자료에 근거하여 서술하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '미국은 바쁜 현대 사회적 특성과 짧은 식사 시간 선호, 효율성을 중시하는 라이프스타일로 인해 맥도날드, 버거킹, 인앤아웃, 웬디스 등 버거나 핫도그 중심의 패스트푸드가 고도로 발달했습니다. 그러나 이러한 패스트푸드와 함께 단맛이 극도로 강한 디저트(젤오, 컵케이크 등)와 대용량 탄산음료(콜라 등)의 섭취가 일상화되면서 과도한 당분 및 지방 섭취로 인한 비만과 성인병 등 열량 과잉의 심각한 건강 문제가 대두되었습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 3 -->
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 미국인들의 기본적인 하루 세끼 식사 구성의 경향성(아침, 점심, 저녁의 무게감과 구성 차이)과 식사에 손님을 초대했을 때 호스트와 게스트가 지켜야 할 예절에 대해 서술하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '미국인들의 아침은 베이컨, 소시지, 달걀, 토스트, 커피 또는 도넛이나 시나몬롤 등으로 간단하게 해결하며, 점심 역시 샌드위치, 샐러드, 수프나 패스트푸드로 가볍게 때우는 경향이 강합니다. 반면 저녁(디너)은 하루 중 가장 주된 식사로 정식 코스(애피타이저-주요리-후식)를 갖춰 무겁게 먹습니다. 식사에 초대받았을 때는 반드시 사전에 참석 여부(회답)를 확실히 답해야 하며, 식사 시에는 모든 사람에게 음식이 돌아가고 주최자(호스트)가 식사를 시작한 후에 수저를 드는 것이 필수 예절입니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+
+        if (inputVal === "") {
+            resultBox.className = "result-box essay-result";
+            resultBox.innerHTML = "미입력 상태의 정답 및 해설입니다. <div class='explanation'>" + scoreExplanation + "</div>";
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 확인 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "모범답안을 확인하고 학습해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
