@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>튀르키예 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 화면 중앙 상단 정렬을 위한 네비게이션 바 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            max-width: 100%;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .p-desc {
+            text-align: center; 
+            color: #666;
+            margin-bottom: 40px;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        button.check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button.check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 화면 중앙 상단에 정렬된 네비게이션 바 -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">인도</a>
+        <a href="터키.html" class="nav-btn active">터키</a>
+        <a href="이탈리아.html" class="nav-btn">이탈리아</a>
+        <a href="프랑스.html" class="nav-btn">프랑스</a>
+        <a href="미국.html" class="nav-btn">미국</a>
+        <a href="스페인.html" class="nav-btn">스페인</a>
+    </div>
+
+    <h1>튀르키예 음식문화 학습 퀴즈</h1>
+    <p class="p-desc">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <!-- ==========================================
+         I. OX 문제 (10문항)
+         ========================================== -->
+    <h2>I. OX 문제</h2>
+
+    <!-- OX 1 -->
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 튀르키예의 영토는 아시아에 속하는 아나톨리아 반도가 약 97%, 유럽에 속하는 트레이스 반도가 약 3%로 구성되어 있다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'O', '정답입니다! 튀르키예는 보스포루스 해협과 다르다넬스 해협을 경계로 아시아 영토(97%)와 유럽 영토(3%)가 나뉩니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 2 -->
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. '파스트르마(pastirma)'는 엄지만한 고기에 커민, 고춧가루, 다진 마늘, 소금 등을 발라 가축의 창자에 넣어 말린 소시지의 일종이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'X', '정답입니다! 설명된 음식은 가축의 창자에 넣어 말린 소시지 종류인 \'수죽(sucuk)\'입니다. 파스트르마는 고기에 양념을 발라 말린 생햄의 일종입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 3 -->
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. 튀르키예인들은 유목 문화에서 나온 식습관의 영향으로 오이나 토마토 같은 채소를 양념 없이 생으로 섭취하는 것에 익숙하다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'O', '정답입니다! 양념 없이 생채소를 섭취하는 것은 유목 문화에서 파생된 튀르키예인들의 대표적인 식습관입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 4 -->
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. '라흐마준(lahmacun)'은 타원형으로 얇게 민 반죽 위에 다진 고기와 치즈, 파스트르마 등을 풍성하게 올려서 구운 빵이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'X', '정답입니다! 설명된 타원형 모양의 치즈 및 고기 토핑 빵은 \'피데(pide)\'입니다. 라흐마준은 얇게 민 밀가루 반죽 위에 다진 고기만을 얹어 화덕에 구워낸 빵입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 5 -->
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. '바클라바(baklava)'는 쌀과 우유를 결합하여 만든 부드러운 푸딩 종류의 튀르키예 기본 디저트이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'X', '정답입니다! 쌀과 우유로 만든 푸딩은 \'슈틀라치(sütlaç)\'입니다. 바클라바는 종잇장처럼 얇은 필로 반죽을 여러 겹 겹치고 견과류를 넣어 구운 후 시럽이나 꿀에 적신 과자입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 6 -->
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. 튀르키예의 전통적인 아침 식사를 뜻하는 카흐발투(kahvaltı)는 '커피를 마시기 전 먹는 음식'이라는 의미를 담고 있다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'O', '정답입니다! 카흐발투는 카훼(커피)와 알투(아래)가 합쳐진 말로, 커피를 마시기 전에 먹는 음식을 뜻합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 7 -->
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. 식사 중 음식을 코에 대고 냄새를 맡거나, 음식의 맛을 비판하는 행위는 튀르키예 식사 예절에서 크게 권장되는 미덕이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'X', '정답입니다! 튀르키예 식사 예절에서는 음식에 코를 대고 냄새를 맡거나 음식을 비판하는 행위를 하지 않도록 규정하고 있습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 8 -->
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. '차이단륵(çaydanlık)'은 차를 끓일 때 떫은맛을 없애고 부드럽게 만들기 위해 사용하는 2중 구조의 주전자이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'O', '정답입니다! 튀르키예인들은 차이단륵이라는 2중 주전자에 중탕으로 차를 끓여 마십니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 9 -->
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 튀르키예식 커피 문화와 전통은 그 독창성을 인정받아 2013년 유네스코 인류무형문화유산에 등재되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'O', '정답입니다! 표면에 두툼한 거품층이 생기도록 끓이고 커피 가루로 점을 치는 터키식 커피 문화는 2013년 유네스코 인류무형문화유산에 등재되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 10 -->
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 튀르키예는 전통적인 이슬람 국가이기 때문에 알코올 음료 제조 및 판매가 전면 금지되어 국민 음료로 불리는 술이 존재하지 않는다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'X', '정답입니다! 이슬람교의 영향이 강하지만 튀르키예에는 포도로 만드는 40~50도의 아니스 향 증류주이자 국민주인 \'라키(raki)\'가 존재합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         II. 단답형 문제 (10문항)
+         ========================================== -->
+    <h2>II. 단답형 문제</h2>
+
+    <!-- 단답 1 -->
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 공기 중의 자연 효모를 이용해 발효시킨 반죽(사우어도우)으로 만드는, 튀르키예 상차림의 가장 기본적인 빵의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['에크멕', 'ekmek'], '정답: 에크멕(ekmek) | 튀르키예인들이 주식으로 먹는 가장 기본적인 발효 빵입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 2 -->
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 튀르키예인들이 가장 즐겨 마시는 음료 중 하나로, 요구르트에 물과 소금을 넣어 희석한 시원하고 짭조름한 음료의 이름은 무엇인가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['아이란', 'ayran'], '정답: 아이란(ayran) | 튀르키예 밥상에서 요구르트 기반으로 만들어 마시는 매우 대중적인 희석 음료입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 3 -->
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 고기나 생선을 작게 잘라 양파, 토마토, 피망 등의 채소와 함께 꼬챙이에 꿰어 불에 구워내는 케밥의 한 종류는 무엇인가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['시시 케밥', '시시케밥', 'sis kebab'], '정답: 시시 케밥(şiş kebab) | 꼬챙이에 재료를 꿰어 숯불에 구워내는 대표적인 케밥입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 4 -->
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 전분과 설탕을 결합하여 만든 젤리 모양의 과자로, 터키식 커피를 제공할 때 보통 물 한 잔과 함께 세트로 곁들여 내는 디저트의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['로쿰', 'lokum'], '정답: 로쿰(lokum) | 전 세계적으로 널리 알려진 달콤하고 쫀득한 튀르키예 전통 과자입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 5 -->
+    <div class="question-block" id="short5">
+        <div class="question-title">5. 튀르키예어로 '감싸다'라는 동사 '사르막'에서 유래한 요리로, 포도잎이나 양배추잎 등에 쌀, 불구르, 다진 고기 등의 소를 채워 감싸서 익힌 음식은 무엇인가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['사르마', 'sarma'], '정답: 사르마(sarma) | 소를 채워 감싸는 요리 형태로, 돌마(dolma)와 함께 자주 언급되는 채소 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 6 -->
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 튀르키예 식사 후 주방장이나 음식을 준비한 이에게 &quot;음식이 맛있습니다&quot;, &quot;당신의 손에 축복을&quot;이라는 감사의 의미로 건네는 전통적인 인사말은 무엇인가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['엘리니제 사울륵', 'elinize saglik', 'elinize sağlık'], '정답: 엘리니제 사울륵(Elinize Sağlık) | 상대방의 요리 노고에 감사함을 전하는 필수 식사 예절 인사말입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 7 -->
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 튀르키예인들이 유유자적한 생활의 중심이자 문화로 생각하는 전통 홍차를 일컫는 명칭은 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['차이', 'cay', 'çay'], '정답: 차이(çay) | 남녀노소 언제 어디서나 허리가 잘록한 유리잔에 담아 3번 이상 마시는 튀르키예식 홍차입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 8 -->
+    <div class="question-block" id="short8">
+        <div class="question-title">8. 토마토, 오이, 양파, 피망 등을 주사위 모양으로 썰어 드레싱을 곁들인 요리로, 일명 '양치기 샐러드'라고도 불리는 튀르키예의 가장 대중적인 샐러드 이름은 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['초반 샐러드', '초반샐러드', 'coban salatasi', 'çoban salatası'], '정답: 초반 샐러드(Çoban Salatası) | 고기 요리에 상큼함을 더해주는 튀르키예의 대표적인 국민 샐러드입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 9 -->
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 튀르키예어로 붉은 렌틸콩을 의미하며, 식사 시 애피타이저 코스에서 가장 대중적으로 제공되는 따뜻한 수프(초르바)의 이름은 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['메르지멕', 'mercimek'], '정답: 메르지멕(Mercimek) | 붉은 렌틸콩을 삶아 부드럽게 만든 메르지멕 초르바스는 대표적인 전식 수프입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 10 -->
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 튀르키예식 정찬에서 본 요리가 나오기 전 올리브오일에 통째로 절인 채소나 크로켓, 샐러드 등을 조금씩 작은 접시에 담아내는 전채(애피타이저) 요리 모듬을 통칭하여 무엇이라 부르는가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['메제', 'meze'], '정답: 메제(meze) | 채소 요리가 발달한 튀르키예에서 식전에 식욕을 돋우기 위해 차게 또는 다양하게 내놓는 전식입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         III. 서술형 문제 (3문항)
+         ========================================== -->
+    <h2>III. 서술형 문제</h2>
+
+    <!-- 서술 1 -->
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 오스만 제국(1299~1922)의 전성기와 영토 확장이 오늘날 튀르키예 요리가 세계적인 수준의 다양성과 융합을 갖추게 만드는 데 어떠한 영햐을 주었는지 구체적인 역사적 배경을 서술하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '오스만 제국은 1453년 콘스탄티노플을 점령하며 비잔틴 문화를 수용했고, 16세기 전성기에는 아나톨리아, 발칸반도, 북아프리카, 아라비아반도, 캅카스에 이르는 광대한 영토를 지배했습니다. 이 과정에서 페르시아의 향신료와 조리법, 그리스의 채소 및 생선 요리법, 아랍의 과자 문화, 그리고 18세기 이후 프랑스 요리법까지 융합되면서 제국 궁정(톱카프 궁전)을 중심으로 수백 가지 향신료와 다채로운 요리 체계가 완성되어 곳곳으로 전파되었습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 2 -->
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 튀르키예식 커피(Turkish coffee)를 만드는 전통적인 제조 공정과 추출 방식, 그리고 커피를 다 마신 직후에 행해지는 독특한 문화적 특징에 대해 서술하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '튀르키예식 커피는 갓 볶은 원두를 절구나 분쇄기로 아주 곱게 간 다음, 커피 가루와 물, 설탕을 자루가 달린 황동 주전자(제즈베)에 넣고 불 위에서 표면에 두툼한 거품층이 생길 때까지 천천히 끓여 추출합니다. 커피 가루를 거르지 않고 잔에 그대로 따라 마시기 때문에, 커피를 다 마신 후에는 잔을 돌려 접시 위에 뒤집어 놓은 뒤, 잔 바닥에 남은 커피 가루 형상으로 소원을 빌며 점을 치는 독특한 문화적 풍습이 있습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 3 -->
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 튀르키예의 국민 속담인 &quot;많이 먹고 단명하지 말고 조금 먹고 천사가 되어라&quot;라는 말과 연관하여, 대접받는 손님이 식사 상황에서 지켜야 할 주요 예절 및 전통 상차림(소프라) 환경에 대해 설명하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '이 속담은 과식을 경계하는 문화를 반영하므로, 초대받은 손님은 무리하게 많이 먹기보다 음식을 남기지 않도록 음식을 들기 전에 자신이 먹을 수 있는 양을 주인에게 분명하게 이야기하는 것이 예의입니다. 또한, 전통적인 환경에서는 다리가 낮은 둥근 밥상인 \'소프라(sofra)\'에 식탁보를 깔고 음식을 차려내며, 종교적 분위기가 강한 집에서는 식사 전후에 연장자의 주도로 식사 기도를 진행하므로 기도가 끝날 때까지 기다려야 합니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+
+        if (inputVal === "") {
+            resultBox.className = "result-box essay-result";
+            resultBox.innerHTML = "미입력 상태의 정답 및 해설입니다. <div class='explanation'>" + scoreExplanation + "</div>";
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 확인 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "모범답안을 확인하고 학습해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
+
