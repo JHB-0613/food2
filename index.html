@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인도 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 주차 이동 버튼 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .nav-btn {
+            padding: 10px 15px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        button.check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button.check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn active">1주차: 인도</a>
+        <a href="터키.html" class="nav-btn">2주차: 튀르키예</a>
+        <a href="이탈리아.html" class="nav-btn">3주차: 이탈리아</a>
+        <a href="프랑스.html" class="nav-btn">4주차: 프랑스</a>
+        <a href="미국.html" class="nav-btn">5주차: 미국</a>
+        <a href="스페인.html" class="nav-btn">6주차: 스페인</a>
+    </div>
+
+    <h1>인도 음식문화 학습 퀴즈</h1>
+    <p style="text-align: center; color: #666;">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <h2>I. OX 문제</h2>
+
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 탄두르는 인도 북서부 라자스탄 지역에서 나온 것으로 보고 있으며, BC 2600년 무렵의 탄두르 유적이 발견되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'O', '정답입니다! 탄두르는 인도 북서부 라자스탄 지역에서 나온 것으로 보며, BC 2600년 무렵의 유적이 발견되었습니다. [PAGE 3]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. 힌두교도의 생활 전반을 지배하는 정·부정 관념에서 육식은 정(淨)한 것으로 여겨지고 채식은 부정한 것으로 여겨진다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'X', '정답입니다! 힌두교에서는 육식을 부정(不淨)하다고 여기고 채식을 정(淨)하다고 여깁니다. [PAGE 6]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. 인도 최초의 차 생산 단지가 조성된 곳은 아삼(Assam)주이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'O', '정답입니다! 영국의 지배 시절 아삼주에 최초의 차 생산 단지가 조성되었습니다. [PAGE 8]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. '기(ghee)'는 우유의 단백질을 엉기게 해서 틀에 눌러 굳힌 인도식 비숙성 치즈이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'X', '정답입니다! 설명된 비숙성 치즈는 \'파니르(paneer)\'입니다. \'기(ghee)\'는 우유의 지방만을 모은 정제 버터입니다. [PAGE 11]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. 인도 음식이 갖추어야 할 6가지 필수 요소를 뜻하는 용어는 '사트 라자스(shat rasas)'이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'O', '정답입니다! 사트 라자스는 단맛, 신맛, 짠맛, 얼얼한 맛, 매운맛, 쓴맛의 6가지 필수 요소를 뜻합니다. [PAGE 13]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. 북인도 요리는 데칸고원을 기준으로 남인도 요리에 비해 상대적으로 쌀과 콩, 야채에 의존하는 채식 문화의 색채가 강하다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'X', '정답입니다! 쌀, 콩, 야채에 의존하는 채식 문화는 \'남인도\'의 특징입니다. 북인도는 밀, 육류, 유제품에 의존하는 비채식 문화 색채가 있습니다. [PAGE 16]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. '난(naan)'은 통밀가루로 만든 플랫브래드로 인도에서 가장 대중적인 빵이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'X', '정답입니다! 통밀가루로 만든 가장 대중적인 빵은 \'로띠(roti)\'입니다. 난은 정제된 밀가루에 효모를 넣어 발효시켜 탄두르에 구운 고급 빵입니다. [PAGE 17]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. 인도에서는 디저트를 포함한 모든 음식을 한꺼번에 한 상(탈리 등)에 차려내는 것이 일반적이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'O', '정답입니다! 인도 식문화에서는 디저트를 포함한 모든 음식을 한꺼번에 차려냅니다. [PAGE 21]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 힌두교에서는 전통적으로 술을 부패한 음식으로 여기거나 신들의 음료로 여겨 금기시하므로 음주 문화가 저조하다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'O', '정답입니다! 힌두교에서는 술을 신들의 음료 또는 부패한 음식으로 여겨 금기시해왔습니다. [PAGE 24]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 인도의 식사 예절에서 왼손은 음식을 먹는 '정한 손'이며, 오른손은 부정한 손으로 간주된다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'X', '정답입니다! 인도에서 정한 손은 \'오른손\'입니다. 왼손은 부정한 손으로 여겨 식사할 때는 오른손만 사용합니다. [PAGE 25]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <h2>II. 단답형 문제</h2>
+
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 여러 종류의 향신료를 곱게 갈아 혼합한 것으로, 인 요리의 무한한 맛을 창조하는 기초가 되는 배합 향신료를 일컫는 용어는 무엇인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['마살라', 'masala'], '정답: 마살라(masala) | 여러 종류의 향신료를 곱게 갈아 혼합한 것을 뜻합니다. [PAGE 10]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 인도의 무굴 궁정에서 중앙아시아, 몽골, 페르시아, 북인도 요리가 융합되어 발달한 요리로 사프란, 육류, 유제품, 견과류를 즐겨 쓴 이 요리 스타일을 무엇이라 부르는가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['무굴 요리', '무굴요리'], '정답: 무굴 요리 | 무굴 제국 시절 페르시아 등의 영향을 받아 사프란, 견과류, 육류를 사용한 융합 요리입니다. [PAGE 4]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 문화인류학자 마빈 해리스가 지적한 대로 아리아인의 경전인 이것에는 &quot;소를 먹는 것은 조상에 대한 반역을 저지르는 것&quot;이라며 암소 도살 금지를 명시하고 있습니다. 이 경전의 이름은 무엇인가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['베다', 'veda'], '정답: 베다 | 아리아인의 경전 베다에는 소를 먹는 것을 엄격히 금하는 문구가 명시되어 있습니다. [PAGE 12]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 인도의 전통적인 단과자류(후식류)를 총칭하는 힌두어 표현은 무엇인가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['미타이', 'mithai'], '정답: 미타이(mithai) | 인도 특유의 매우 달고 열량이 높은 단과자류를 총칭합니다. [PAGE 14]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short5">
+        <div class="question-title">5. 힌두어로 '콩'을 뜻하며, 마른 콩에 물과 향신료를 넣고 끓인 인도 전역의 대중적인 스튜 형태 음식을 무엇이라고 하는가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['달', 'dal'], '정답: 달(dal) | 콩을 뜻하는 말인 동시에 콩과 향신료를 끓인 인도 전역의 대중적인 음식입니다. [PAGE 15]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 우유에 유산균을 넣어 시큼하게 발효시킨 인도식 걸쭉한 요구르트를 무엇이라고 부르는가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['다히', 'dahi'], '정답: 다히(dahi) | 우유에 유산균을 넣어 발효시킨 걸쭉한 인도식 요구르트입니다. [PAGE 11]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 생쌀에 향신료에 잰 고기, 생선 또는 채소 등을 넣고 찌거나, 미리 볶아 반쯤 익힌 쌀과 함께 쪄서 만든 북인도의 대표적인 쌀 요리는 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['비리야니', 'biryani'], '정답: 비리야니(biryani) | 고기나 채소를 쌀과 함께 향신료를 넣어 쪄낸 대표적 무굴풍 밥 요리입니다. [PAGE 18]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short8">
+        <div class="question-title">8. 녹두가루로 만든 반죽을 철판에 살짝 굽거나 기름에 튀겨 만든 얇고 바삭한 플랫브래드로, 남인도 식사(탈리) 등에서 밥 위에 얹어 나오기도 하는 이것은 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['파파덤', 'papadum', '파파담'], '정답: 파파덤 | 녹두가루로 만들어 얇고 바삭바삭한 식감을 가진 플랫브래드입니다. [PAGE 19]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 인도인들이 식후에 입안을 개운하게 하고 소화를 돕기 위해 즐겨 씹는 것으로, 하트 모양의 베틀후추 잎에 석회, 빈랑자, 향신료 등을 싸서 만든 '인도식 껌'은 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['빤', 'paan'], '정답: 빤(paan) | 침을 붉게 만드는 성분이 있으며 청향 및 소화 작용을 돕는 식후 기호품입니다. [PAGE 22]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 영국인들이 인도 향신료를 사용하여 스파이시하게 만든 요리를 '영어식'으로 총칭하기 시작하면서 생긴 명칭으로, 크로스앤블랙웰(C&B)사에 의해 파우더 형태로 상품화되어 세계화된 음식의 이름은 무엇인가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하세요">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['카레', '커리', 'curry'], '정답: 카레 / 커리(curry) | 원래 인도의 카리(kari)에서 유래하여 영국식 파우더로 상품화 및 세계화되었습니다. [PAGE 9, 15]')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <h2>III. 서술형 문제</h2>
+
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 문화인류학자 마빈 해리스의 설명을 바탕으로, 힌두교에서 암소를 신성시하고 쇠고기 섭취를 엄격히 금기하게 된 실제 역사적·경제적 배경(이유)을 서술하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 서술하세요..."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '가장 핵심적인 배경은 아리아인 침공 후 가져온 소들이 인도의 풍토에 적응하지 못하자 소 도살을 방지하고 보호하기 위함이었습니다. 또한 경제적으로 소를 잡아 한 번 고기를 먹는 것보다 소를 살려두어 농업 노동력(밭갈이, 수레 끄기)을 얻고 유제품(우유, dahi, ghee)을 지속적으로 이용하며, 쇠똥을 연료로 쓰는 것이 장기적으로 가치가 높았기 때문입니다. [PAGE 12]')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 인도의 카스트 제도 및 힌두교 식생활과 관련하여 '정(淨)한 음식'과 '부정(不淨)한 음식'의 관념이 구체적으로 조리 방식이나 식사 상황에서 어떻게 적용되는지 자료에 언급된 사례를 들어 설명하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 서술하세요..."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '힌두교의 정·부정 관념에 따르면 채식과 유제품(기, 다히 등)은 정한 음식으로 여겨져 권장되지만, 육식과 먹다 남긴 음식, 부패한 음식은 부정한 것으로 여겨져 금기시됩니다. 또한 식사 시 자기보다 상위 혹은 동일한 카스트의 사람이 만든 음식만을 정한 음식으로 인정하여 섭취할 수 있으며, 식기 또한 인위적인 것보다 자연에서 얻은 바나나잎이나 야자잎을 더 정하다고 여깁니다. [PAGE 5, 6, 25]')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 데칸고원을 기준으로 구분되는 '북인도 음식문화'와 '남인도 음식문화'의 차이점을 주식(곡물), 오일(지방), 선호하는 음료, 채식/비채식 경향성을 포함하여 비교 서술하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 서술하세요..."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '북인도는 주로 밀(빵)을 주식으로 하며 정제 버터인 \'기(ghee)\'를 주로 사용하고, 홍차와 짜이를 즐겨 마시며 육류와 유제품에 의존하는 비채식 문화의 색채가 강합니다. 반면, 남인도는 낱알이 짧고 찰기가 없는 쌀을 주식으로 하며 코코넛오일, 참기름 등을 사용하고, 음료로는 커피를 선호하며 쌀과 콩, 야채에 의존하는 채식 문화의 색채가 강하다는 뚜렷한 차이가 있습니다. [PAGE 16]')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수 (공백 제거 후 비교)
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        if (inputVal === "") {
+            alert("답안을 입력해주세요!");
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        resultBox.style.display = "block";
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 표출 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim();
+        const resultBox = block.querySelector('.result-box');
+
+        if (inputVal === "") {
+            alert("답안을 먼저 작성한 후 모범답안을 확인해보세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "작성하신 내용을 모범답안과 비교해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
+
