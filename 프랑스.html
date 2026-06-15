@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프랑스 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 화면 중앙 상단 정렬을 위한 네비게이션 바 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            max-width: 100%;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .p-desc {
+            text-align: center; 
+            color: #666;
+            margin-bottom: 40px;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 화면 중앙 상단에 정렬된 네비게이션 바 -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">인도</a>
+        <a href="터키.html" class="nav-btn">터키</a>
+        <a href="이탈리아.html" class="nav-btn">이탈리아</a>
+        <a href="프랑스.html" class="nav-btn active">프랑스</a>
+        <a href="미국.html" class="nav-btn">미국</a>
+        <a href="스페인.html" class="nav-btn">스페인</a>
+    </div>
+
+    <h1>프랑스 음식문화 학습 퀴즈</h1>
+    <p class="p-desc">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <!-- ==========================================
+         I. OX 문제 (10문항)
+         ========================================== -->
+    <h2>I. OX 문제</h2>
+
+    <!-- OX 1 -->
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 1533년 메디치 가문의 카트린느 드 메디시스가 프랑스 왕가와 결혼하면서 데려간 요리사들을 통해 프랑스 궁정에 이탈리아의 세련된 조리법과 포크 문화가 소개되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'O', '정답입니다! 피렌체 메디치 가문의 결혼을 계기로 페이스트리, 크림, 포크 문화 등이 유입되어 프랑스 지배층의 음식문화가 세련화되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 2 -->
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. 프랑스 혁명(1789~1799) 이전부터 미식 추구와 레스토랑 중심의 외식 문화는 일반 대중들에게 가장 널리 퍼져 있었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'X', '정답입니다! 프랑스 혁명 \'이후\'에 부유한 시민층을 중심으로 미식 추구가 대중화되었으며, 음식 비평 문화와 식당 수준 평가가 본격적으로 시작되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 3 -->
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. 미슐랭 가이드는 1900년 파리 세계박람회에서 프랑스를 여행하는 자가용 운전자들에게 자동차 고장 정보, 숙박, 식사 장소 등의 정보를 무료로 제공하면서 시작되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'O', '정답입니다! 타이어 회사를 설립한 미슐랭(미쉐린) 형제가 자가용 운전자들을 위한 무료 안내서로 처음 배급한 것이 기원입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 4 -->
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. 프랑스 요리에서 소스의 기본 재료는 채소만을 오랜 시간 고아서 만든 국물인 '부게 가르니'이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'X', '정답입니다! 소스의 기본 재료는 뼈를 고아 만든 \'퐁(fond)\'입니다. 부케가르니는 수프나 스튜를 만들 때 향미를 내기 위해 국물에 넣었다가 건져내는 여러 향신료 다발입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 5 -->
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. 프랑스인들은 와인과 음식의 어울림, 또는 치즈와 와인의 조화(마리아주)를 매우 중시하여 와인과의 조합 하나를 한 음식으로 취급하기도 한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'O', '정답입니다! 프랑스 식문화에서는 와인이 빠진 식사를 \'태양이 없는 낮\'과 같다고 비유할 정도로 조화를 중시합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 6 -->
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. 프랑스 서민적 한식집 중 하나인 '진옥하 할매'는 속풀이 선지 해장국 전문점으로 미슐랭 가이드에 언급되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'X', '정답입니다! \'진옥하 할매\'는 1978년 문을 연 닭한마리 칼국수집입니다. 속풀이 선지 해장국집은 다른 식당(대성집 등)에 대한 설명입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 7 -->
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. '카망베르(camembert)' 치즈는 일드 프랑스 지방의 소젖으로 만드는 치즈이며 로제와인이나 멜를로와인과 잘 어울린다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'X', '정답입니다! 일드 프랑스 지방의 소젖으로 만드는 연질 치즈는 \'브리(brie)\'입니다. 카망베르는 노르망디 지방의 대표적인 치즈이며 나폴레옹이 좋아한 것으로 유명합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 8 -->
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. 프랑스식 가자미 구이 요리인 '솔 오 버르 블랑(Sole au beurre blanc)'은 생선 살에 밀가루를 입혀 버터에 익힌 뒤 레몬즙을 넣은 버터소스를 곁들이며, 절대 뼈 없이 조리하는 것이 특징이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'O', '정답입니다! 자료 스크랩에 명시된 대로 가자미에 버터소스를 곁들이는 생선 요리로, 뼈 없이 정갈하게 조리하는 특징이 기재되어 있습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 9 -->
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 프랑스 정찬 코스 도중에 나오는 '소르베(sorbet)'는 단맛이 강해 식사 전체를 마무리하는 메인 디저트 단계를 뜻한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'X', '정답입니다! 소르베는 생선 요리와 육류 요리 사이에 제공되며, 다음 요리를 맛있게 즐기기 위해 입안을 헹구고 개운하게 하는 용도로 쓰입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 10 -->
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 프랑스 식사 예절에서 정식 상차림을 할 때, 식기는 접시를 중심으로 왼쪽에 포크를, 오른쪽에는 칼을 놓으며 포크는 등이 보이도록 놓아야 한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'O', '정답입니다! 포크는 등이 위로 향하도록(보이도록) 뒤집어 놓는 것이 정식 상차림과 사용법의 기본 규칙입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         II. 단답형 문제 (10문항)
+         ========================================== -->
+    <h2>II. 단답형 문제</h2>
+
+    <!-- 단답 1 -->
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 더운 요리와 찬 요리를 한 번에 다 차려내던 기존 방식을 비판하고, 음식이 식지 않도록 한 코스에 한 가지씩 순차적으로 내놓는 '러시아식 서비스법'을 보급하는 데 앞장선 카렘의 후계자는 누구인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['위르뱅 뒤부아', '위르뱅뒤부아', '뒤부아'], '정답: 위르뱅 뒤부아 | 러시아의 추운 날씨 때문에 음식이 식는 것을 방지하기 위해 고안된 순차 서빙법을 프랑스 코스 요리에 도입했습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 2 -->
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 프랑스 고전 요리를 집대성하고 먹을 수 없는 화려한 장식을 생략하여 요리를 현대화했으며, 오늘날 전 세계에서 통용되는 프랑스식 정찬 식사의 음식 제공 순서(코스) 체계와 주방 시스템을 확립한 인물은 누구인가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['에스코피에', '조르주 오귀스트 에스코피에'], '정답: 에스코피에 | \'요리의 제왕\'으로 불리며, 그의 저서 <요리의 길잡이>는 프랑스 요리의 경전으로 통합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 3 -->
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 파슬리, 타임, 월계수잎 등을 실로 묶어 꽃다발처럼 만들어 수프나 스튜의 국물을 우려낼 때 향미를 내기 위해 넣는 향신료 묶음을 무엇이라고 부르는가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['부케 가르니', '부케가르니', 'bouquet garni'], '정답: 부케 가르니 | 국물을 우려낸 후에는 걷어버리는 프랑스 요리의 핵심 향신료 조합 기법입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 4 -->
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 프랑스 남부 프로방스 지방의 전통 요리로, 가지, 토마토, 호박, 피망, 양파, 마늘 등 각종 채소와 허브를 올리브유에 볶아 뭉근히 끓여낸 야채 스튜의 이름은 무엇인가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['라타투이', '라타뚜이', 'ratatouille'], '정답: 라타투이(ratatouille) | 이탈리아 남부와 유사한 올리브유 베이스의 산뜻한 지중해식 야채 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 5 -->
+    <div class="question-block" id="short5">
+        <div class="question-title">5. 프랑스 치즈 중 역사가 가장 오래된 것 중 하나로, 아베롱 지방의 자연 동굴에서 생산되며 소금기 있는 톡 쏘는 맛으로 인해 달콤한 화이트와인과 잘 어울리는 세계 3대 블루치즈의 이름은 무엇인가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['로크포르', '로끄포르', 'roquefort'], '정답: 로크포르 | 이탈리아의 고르곤졸라, 스페인의 카브랄레스와 함께 세계 3대 블루치즈로 꼽힙니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 6 -->
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 닭고기를 큼직하게 잘라 버터에 지진 후, 각종 채소와 버섯, 베이크, 허브 그리고 '적포도주'를 넣어 뭉근하게 익혀낸 일종의 프랑스식 닭찜 요리는 무엇인가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['코코뱅', '콕 오 뱅', 'coq au vin'], '정답: 코코뱅(Coq au vin) | 부르고뉴 등 포도주 산지에서 발달한 프랑스의 대표적인 육류 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 7 -->
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 파이 껍질(타르트 쉘)에 치즈, 고기, 해산물, 채소 등을 넣고 계란, 우유, 크림을 섞은 커스터드를 부어 오븐에 노릇하게 구워낸 프랑스의 대표적인 가정식 요리는 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['키슈', 'quiche'], '정답: 키슈(quiche) | 달걀과 크림의 부드러움과 다양한 속재료의 맛이 어우러진 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 8 -->
+    <div class="question-block" id="short8">
+        <div class="question-title">8. '살찐 간'이라는 뜻을 가졌으며, 거위나 오리에게 옥수수 등을 강제로 많이 먹여 지방간을 만들어 얻는 식재료로 프랑스에서 특별한 날 전채 요리로 주로 사용하는 세계 3대 진미는 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['푸아그라', '푸아 그라', 'foie gras'], '정답: 푸아그라(foie gras) | 부드럽고 기름진 고소한 맛이 나지만, 가공 과정의 잔혹성으로 인해 대다수 유럽 국가에서는 생산이 불법화되어 있습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 9 -->
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 프랑스 정찬 상차림에서 손으로 집어 먹는 음식(생굴, 에스카르고 등)이나 손을 사용한 후, 손가락을 씻을 수 있도록 식탁 위에 물을 담아 내오는 그릇의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['핑거볼', '핑거보울', 'finger bowl'], '정답: 핑거보울(finger bowl) | 손가락 끝을 살짝 담가 씻는 용도로, 절대 마시는 물이 아닙니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 10 -->
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 프랑스인들의 일상 식사에서 초콜릿이나 건포도 껍질 등이 들어가며, 주로 아침 식사 때 크루아상, 바게트 등과 함께 커피에 곁들여 먹는 달콤한 페이스트리 빵 종류를 통칭하는 명칭(또는 예시 명칭 하나)은 무엇인가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['뱅 오 쇼콜라', '뱅 오 레쟁', 'pain aux chocolat', 'pain aux raisins'], '정답: 뱅 오 쇼콜라 / 뱅 오 레쟁 | 초콜릿이나 건포도가 들어간 빵으로 프랑스인들이 아침에 즐겨 먹는 비에누아즈리 종류입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         III. 서술형 문제 (3문항)
+         ========================================== -->
+    <h2>III. 서술형 문제</h2>
+
+    <!-- 서술 1 -->
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 프랑스 전통 정찬 만찬 코스에서 식전과 식후에 제공되는 알코올 음료인 '아페리티프(Aperitif)'와 '디제스티프(Digestif)'의 기능적 차이와 주로 사용되는 술의 특징을 비교하여 서술하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '식전주인 아페리티프는 본격적인 식사 전에 입맛과 식욕을 돋우기 위한 목적으로 제공되며 주로 탄산이 있는 샴페인, 와인 또는 진한 술을 와인에 섞어 가볍게 마십니다. 반면, 식후주인 디제스티프는 무거운 정찬 식사가 모두 끝난 후 소화를 돕기 위한 목적으로 제공되며, 이를 위해 코냐크(헤네시 등)나 푸르트 브랜디와 같이 알코올 도수가 높고 정제된 독한 증류주를 마신다는 차이가 있습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 2 -->
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 프랑스 식사 예절(에티켓)에서 식탁 위에 놓인 '빵(Pain)'을 다룰 때 반드시 손으로 해야 하는 행동과 절대 해서는 안 되는 금지 행동에 대해 설명하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '프랑스 식사 예절에서 빵은 칼을 사용하지 않고 반드시 손으로 직접 조금씩 뜯어서 한 입 크기로 먹어야 하며, 버터를 바를 때는 개인 접시 위에서 버터칼을 사용해야 합니다. 반면, 절대 해서는 안 되는 금지 행동으로는 칼로 빵을 통째로 자르거나, 손가락으로 빵을 칼처럼 쥐고 빵 한가운데를 완전히 가른 뒤 그 사이에 다른 재료나 버터를 채워 스스로 즉석 샌드위치를 만들어 먹는 행위 등이 엄격히 금지됩니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 3 -->
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 세계 3대 진미 중 하나인 '캐비아(Caviar)'의 식재료적 특징과 이를 정찬 만찬에서 에피타이저 코스로 섭취할 때 맛의 훼손을 막기 위해 반드시 지켜야 하는 도구(스푼) 상의 주의사항 및 먹는 방식에 대해 서술하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '캐비아는 카스피해와 흑해에서 잡히는 철갑상어의 알을 소금에 절인 것으로 벨루가가 최상품입니다. 캐비아는 금속을 접하면 산화되어 고유의 맛이 변하고 불쾌한 금속 냄새를 쉽게 흡수하므로, 반드시 은이나 철제 스푼이 아닌 자개(조개껍데기) 스푼이나 플라스틱 스푼을 사용하여 떠야 합니다. 먹을 때는 멜바 토스트나 블리니(얇은 팬케이크) 위에 캐비아를 얹고 레몬즙을 뿌려 손으로 집어 먹거나 삶은 계란, 파슬리, 양파 다진 것을 얹어 함께 먹습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+
+        if (inputVal === "") {
+            resultBox.className = "result-box essay-result";
+            resultBox.innerHTML = "미입력 상태의 정답 및 해설입니다. <div class='explanation'>" + scoreExplanation + "</div>";
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 확인 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "모범답안을 확인하고 학습해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
