@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스페인 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 화면 중앙 상단 정렬을 위한 네비게이션 바 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            max-width: 100%;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .p-desc {
+            text-align: center; 
+            color: #666;
+            margin-bottom: 40px;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 화면 중앙 상단에 정렬된 네비게이션 바 -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">인도</a>
+        <a href="터키.html" class="nav-btn">터키</a>
+        <a href="이탈리아.html" class="nav-btn">이탈리아</a>
+        <a href="프랑스.html" class="nav-btn">프랑스</a>
+        <a href="미국.html" class="nav-btn">미국</a>
+        <a href="스페인.html" class="nav-btn active">스페인</a>
+    </div>
+
+    <h1>스페인 음식문화 학습 퀴즈</h1>
+    <p class="p-desc">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <!-- ==========================================
+         I. OX 문제 (10문항)
+         ========================================== -->
+    <h2>I. OX 문제</h2>
+
+    <!-- OX 1 -->
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 스페인은 국토의 약 1/3이 산지이며 평균 고도가 해발 600m 이상으로, 바위 투성이 지형은 가축 사육이나 포도 경작에 적합하다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'O', '정답입니다! 스페인의 척박하고 바위가 많은 지형은 염소나 양 등의 가축 사육과 세계 3위 수준의 와인 생산을 가능케 하는 포도 경작에 매우 적합합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 2 -->
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. 8세기 무렵 스페인을 지배한 북아프리카의 무슬림인 '무어인'의 영향으로 커민, 계피, 고수를 사용하거나 고기에 과일을 넣는 조리 문화가 스페인에 유입되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'O', '정답입니다! 무어인들의 이슬람 왕조 지배를 통해 아몬드 가루를 쓰는 마르지판, 제당법 등과 함께 다양한 향신료 및 요리법이 융합되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 3 -->
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. '살치촌(salchichon)'은 돼지 피와 양파, 향신료, 쌀 등을 돼지 창자에 채워 만든 스페인식 피 소시지이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'X', '정답입니다! 돼지 피와 양파, 쌀 등을 창자에 채운 순대 형태의 피 소시지는 \'모르시야(morcilla)\'입니다. 살치촌은 최상급 돼지고기에 소금, 후추만 넣고 건조·숙성시킨 드라이 소시지입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 4 -->
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. 스페인의 최고급 생햄인 '하몬 이베리코 데 베요타'는 청정 지역에 이베리코 종 흑돼지를 방목하여 야생 도토리를 먹여 키우는 로마 시대 이래의 전통으로 제조된다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'O', '정답입니다! 베요타(bellota)는 스페인어로 도토리를 뜻하며, 이베리코 흑돼지 다리를 통째로 소금에 절여 건조·숙성시킨 세계 3대 생햄 중 최고로 꼽힙니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 5 -->
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. 스페인 전통 음식문화인 '핀초(pintxo)'는 토스트한 빵 위에 여러 재료를 얹어 작은 꼬챙이를 꽂아 내는 바스크식 타파스를 의미한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'O', '정답입니다! 핀초는 바스크어로 \'꼬챙이\'라는 뜻으로, 보통 한 접시에 세 조각 정도가 제공되는 스페인 특유의 전찬 사교 문화입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 6 -->
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. '퀘소 만체고(queso manchego)'는 스페인 북부 갈리시아 지방에서 생산되며 석회암 동굴에서 숙성시키는 세계 3대 블루치즈 중 하나이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'X', '정답입니다! 석회암 동굴에서 숙성되는 세계 3대 블루치즈는 \'카브랄레스(cabrales)\'입니다. 만체고 치즈는 남부 고원지대 라만차 지역에서 만체가 품종의 양젖을 숙성시켜 만드는 경질 치즈입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 7 -->
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. 스페인은 이탈리아에 이어 유럽에서 두 번째로 쌀을 많이 생산하는 국가이며, 확실한 쌀의 대량 재배는 10세기 무렵 무어인들이 안달루시아 지방에 쌀을 경작하면서 시작되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'O', '정답입니다! 15세기 무렵 쌀이 스페인의 중요 작물로 확고히 자리 잡았고, 이후 발렌시아 지방에서 대표적인 밥 요리인 파에야가 탄생했습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 8 -->
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. 스페인 남부 안달루시아 지방에서 유래한 '가스파초(gazpacho)'는 한겨울 혹독한 추위를 이겨내기 위해 면, 채소, 고기 등을 한데 끓여 뜨겁게 먹는 스튜 수프이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'X', '정답입니다! 가스파초는 덥고 건조한 남부 여름철에 잘 익은 토마토, 마늘, 오이, 올리브유 등을 갈아서 차갑게 마시는 \'냉수프\'입니다. 면, 채소, 고기를 따로 건져 시골빵과 먹는 뜨거운 음식은 \'꼬시도(cocido)\'입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 9 -->
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 스페인 사람들은 하루 중 식사 간격이 매우 넓어 아침과 점심 사이, 점심과 저녁 사이에 가벼운 간식이나 타파스를 곁들여 하루에 총 5~6번 적게 자주 먹는 식습관을 가지고 있다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'O', '정답입니다! 스페인인들은 보통 저녁을 밤 9~11시 사이로 매우 늦게 먹기 때문에 하루에 메인 식사와 가벼운 간식(타파스, 보카디요 등) 세션을 5~6번 가량 쪼개어 가집니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 10 -->
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 스페인의 식후 음료인 '카라히요(carajillo)'는 에스프레소 커피에 브랜디나 럼 같은 독한 술을 탄 후 불을 붙여 마시는 음료이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'O', '정답입니다! 스페인에서는 식후 혹은 활력을 돋우기 위해 에스프레소에 브랜디를 섞어 불을 붙여 마시는 카라히요 문화가 대중적입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         II. 단답형 문제 (10문항)
+         ========================================== -->
+    <h2>II. 단답형 문제</h2>
+
+    <!-- 단답 1 -->
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 피멘톤(pimenton)이라는 붉은 고춧가루가 들어가 특유의 오렌지빛이 도는 붉은색을 띠며, 매콤하고 짭짤하여 스페인 전역에서 널리 쓰이는 대표적인 반건조 돼지고기 소시지의 이름은 무엇인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['초리소', '초리조', 'chorizo'], '정답: 초리소(chorizo) | 스페인의 돼지고기 가공육 발달을 대표하는 매콤한 풍미의 소시지입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 2 -->
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 계란에 올리브유, 다진 마늘, 레몬즙을 가득 넣고 휘저어 만드는 지중해식 소스로, 스페인 요리에서 마늘향을 낼 때 '약방의 감초'처럼 자주 곁들여 사용하는 이 소스의 이름은 무엇인가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['알리올리', '알리올리 소스', 'alioli'], '정답: 알리올리(alioli) / 아이올리 | 지중해 요리에서 마늘과 올리브유의 풍미를 극대화해 감칠맛을 더해주는 핵심 소스입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 3 -->
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 계란과 으깬 감자, 양파 등을 함께 섞어 올리브유를 두른 팬에 두툼하고 둥글게 부쳐내는 스페인의 가장 대중적인 '국민 오믈렛' 요리의 명칭은 무엇인가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['토르티야 데 파타타', '또르띠야 데 빠따따', 'tortilla de patata'], '정답: 토르티야 데 파타타 | 감자가 듬뿍 들어간 스페인의 대표적인 가정식이자 바의 국민 음식입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 4 -->
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 술에 간단한 안주를 곁들여 먹는 스페인 특유의 소량 안주 및 사교 문화를 뜻하는 말로, 오징어튀김, 새우구이, 올리브절임 등 작은 접시에 조금씩 담겨 나오는 이 요리 형태를 무엇이라 부르는가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['타파스', 'tapas'], '정답: 타파스(tapas) | 대화와 소통을 중시하는 스페인 사교 문화에서 빼놓을 수 없는 독특한 미식 아이콘입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 5 -->
+    <div class="question-block" id="short5">
+        <div class="question-title">5. 스페인 북부 아스투리아스 지방의 시그니처 요리로, 커다란 흰 누에콩에 베이컨, 모르시야(피소시지), 초리소, 사프란 등을 넣고 진하게 끓여낸 대표적인 콩 스튜 요리는 무엇인가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['파바다', 'favada'], '정답: 파바다(favada) | 추운 북부 산간 지방의 기후를 견디게 해주는 영양가 높은 전통 진한 콩 스튜 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 6 -->
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 어획량이 유럽 최고 수준인 북서부 갈리시아 지방의 대표 요리로, 삶은 문어 위에 파프리카 가루, 올리브유, 소금을 뿌려 익힌 감자와 함께 내놓는 이 해산물 요리의 이름은 무엇인가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['풀포 아라 가예가', '풀포 아 라 가예가', 'pulpo a la gallega'], '정답: 풀포 아라 가예가 | 스페인인들이 매우 사랑하는 부드러운 갈리시아식 전통 문어 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 7 -->
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 스페인 전통 바나 카페테리아에서 오후 5~6시경 활기를 띨 때, 홍차나 뜨거운 우유와 함께 달콤한 페이스트리, 과자 등을 즐기는 스페인 특유의 '오후 간식 시간'을 뜻하는 용어는 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['메리엔다', 'merienda'], '정답: 메리엔다(merienda) | 늦은 저녁 식사 시간 때문에 점심과 저녁 사이에 꼭 가지는 오후 간식 세션입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 8 -->
+    <div class="question-block" id="short8">
+        <div class="question-title">8. 스페인 안달루시아 헤레스(Jerez) 지방에서 생산되는 특색 있는 주정강화 와인으로, 타파스 바에서 식전주나 안주와 함께 가장 대중적으로 결합해 마시는 이 술의 영어식 이름은 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['셰리', '셰리 와인', 'sherry'], '정답: 셰리(sherry) / 헤레스 와인 | 일반 와인에 브랜디 등을 섞어 알코올 도수를 높여 독특한 풍미를 자랑하는 스페인 와인입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 9 -->
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 주로 카탈루냐 등지에서 생산되는 스페인의 가볍고 드라이한 식전용 스파클링 와인(발포성 포도주)을 뜻하는 명칭은 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['카바', 'cava'], '정답: 카바(cava) | 프랑스의 샴페인처럼 스페인을 대표하는 고급 발포성 와인 종류입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 10 -->
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 스페인 중부 고원 도시 세고비야(Segovia)의 가장 대표적인 시그니처 요리로, 생후 몇 주 되지 않은 아기 돼지를 통째로 오븐에 바삭하게 구워내 접시로 썰어내는 퍼포먼스로도 유명한 이 육류 요리의 이름은 무엇인가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['꼬치니요 아사도', 'cochinillo asado'], '정답: 꼬치니요 아사도 | 껍질은 바삭하고 속살은 극도로 부드러운 스페인의 역사 깊은 새끼돼지 구이 정통 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         III. 서술형 문제 (3문항)
+         ========================================== -->
+    <h2>III. 서술형 문제</h2>
+
+    <!-- 서술 1 -->
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 스페인의 대표적인 국민 밥 요리인 '파에야(Paella)'의 제조 공정 상 특징(들어가는 주재료, 특유의 색감 향신료)과 함께 파에야, 이탈리아의 리조토, 아랍의 필라프 사이에 존재하는 '문화의 전파와 변용' 역사적 관계를 설명하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '파에야는 올리브유에 마늘을 볶아 향을 낸 뒤 쌀과 토끼고기, 달팽이, 각종 해산물(새우, 홍합 등), 초리소를 넣고 값비싼 향신료인 \'사프란(saffron)\'을 더해 특유의 노란빛 색감과 풍미를 내는 요리입니다. 역사의 흐름 속에서 10세기 무렵 아랍 무어인들이 스페인 안달루시아에 단립종 쌀을 전파하여 아랍의 \'필라프\'에서 스페인의 \'파에야\'가 파생되었고, 15세기 중반 스페인 농부들이 당시 스페인 영토였던 이탈리아 북부 포 평원에 이 단립종 쌀을 심으면서 이탈리아의 \'리조토\'로 파생 및 수용되었습니다. 이는 한 지역의 요리가 다른 지역으로 이동하며 식기호와 조리법에 맞게 현지화된 대표적인 미식 전파와 변용 사례입니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 2 -->
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 스페인인들의 독특한 브런치 스타일의 아침 및 오전 간식 메뉴인 '판 콘 토마테 이 하몬(pan con tomate y jamon)'의 구체적인 조리 조합 방식과 상쾌한 여름철 대표 음료인 '상그리아(Sangria)'의 특징에 대해 서술하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '판 콘 토마테 이 하몬은 두툼하게 썬 시골 빵 위에 잘 익은 생토마토를 문지르거나 얹고, 그 위에 스페인 전통 생햄인 하몬 조각을 올린 후 품질 좋은 올리브유를 듬뿍 뿌려 완성하는 담백하고 직관적인 조합의 음식입니다. 여름철에 이와 함께 최고의 인기를 누리는 상그리아(Sangria)는 스페인 레드와인을 베이스로 하여 잘게 썬 레몬, 오렌지, 사과 등의 다양한 신선한 과일과 설탕, 탄산수 등을 섞어 차갑게 숙성시켜 마시는 상큼하고 시원한 스페인 전통 와인 칵테일 음료입니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 3 -->
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 스페인 음식문화에서 신대륙 발견(1492년 콜럼버스)이 미친 영향과 더불어, 스페인 정찬(코스 요리)의 기본적인 구성(전채, 주요리, 후식 단계)에 대해 서술하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '1492년 콜럼버스의 신대륙 발견과 중남미 지역 식민 지배를 통해 스페인은 고추(파프리카 가루인 피멘톤의 원료), 토마토, 감자 등 신대륙의 핵심 작물들을 유럽 최초로 대량 수용하여 파에야, 가스파초, 토르티야 등 현대 스페인 국민 요리의 근간을 완성하는 지대한 영향을 받았습니다. 스페인의 정식 정찬 코스는 전채 요리인 \'프리메르 플라토(primer plato)\'로 수프, 샐러드, 하몬, 계란 요리가 제공되고, 메인 코스인 \'세군도 플라토(segundo plato)\'로 양고기·돼지고기·생선 등의 육류 요리를 먹으며, 마지막 디저트 코스인 \'포스트레(postre)\'를 통해 플란(푸딩), 과일, 치즈 등을 먹는 3단계 구성을 기본으로 합니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+
+        if (inputVal === "") {
+            resultBox.className = "result-box essay-result";
+            resultBox.innerHTML = "미입력 상태의 정답 및 해설입니다. <div class='explanation'>" + scoreExplanation + "</div>";
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 확인 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "모범답안을 확인하고 학습해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
