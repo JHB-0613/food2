@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이탈리아 음식문화 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', dotum, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* 화면 중앙 상단 정렬을 위한 네비게이션 바 스타일 */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            max-width: 100%;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .nav-btn.active {
+            background-color: #ff9933;
+            color: white;
+        }
+        .nav-btn:hover:not(.active) {
+            background-color: #d0d0d0;
+        }
+        h1 {
+            color: #ff9933;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .p-desc {
+            text-align: center; 
+            color: #666;
+            margin-bottom: 40px;
+        }
+        h2 {
+            border-left: 5px solid #138808;
+            padding-left: 10px;
+            color: #111;
+            margin-top: 40px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        button.check-btn {
+            background-color: #138808;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button.check-btn:hover {
+            background-color: #0f6e06;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .essay-result {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 화면 중앙 상단에 정렬된 네비게이션 바 -->
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-btn">인도</a>
+        <a href="터키.html" class="nav-btn">터키</a>
+        <a href="이탈리아.html" class="nav-btn active">이탈리아</a>
+        <a href="프랑스.html" class="nav-btn">프랑스</a>
+        <a href="미국.html" class="nav-btn">미국</a>
+        <a href="스페인.html" class="nav-btn">스페인</a>
+    </div>
+
+    <h1>이탈리아 음식문화 학습 퀴즈</h1>
+    <p class="p-desc">강의자료 내용을 바탕으로 구성된 퀴즈입니다. 문제를 풀고 정답을 확인해보세요.</p>
+
+    <!-- ==========================================
+         I. OX 문제 (10문항)
+         ========================================== -->
+    <h2>I. OX 문제</h2>
+
+    <!-- OX 1 -->
+    <div class="question-block" id="ox1">
+        <div class="question-title">1. 이탈리아 음식(특히 남부 요리)은 밀, 콩, 올리브, 채소, 허브 등을 풍부하게 사용하는 지중해식 식사(Mediterranean diet)의 전형을 보여준다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox1" value="O"> O</label>
+            <label><input type="radio" name="q_ox1" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox1', 'O', '정답입니다! 이탈리아 요리는 양념을 적게 쓰고 식물성 식품과 올리브유 등을 결합한 지중해식 식사법의 대표 주자입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 2 -->
+    <div class="question-block" id="ox2">
+        <div class="question-title">2. 파스타를 익힐 때 면의 중심에 수분이 40~60% 정도 남아있어 약간 씹히는 맛이 있는 최적의 조리 상태를 '알덴테(aldente)'라고 한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox2" value="O"> O</label>
+            <label><input type="radio" name="q_ox2" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox2', 'O', '정답입니다! 알덴테는 겉은 부드럽고 수분이 40~60%로 조절된 중심부는 단단함이 약간 남아 식감을 주는 상태를 뜻합니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 3 -->
+    <div class="question-block" id="ox3">
+        <div class="question-title">3. 피자는 18세기 혹은 19세기 초에 이탈리아 베네치아에서 모차렐라와 토마토소스를 발효 밀가루 반죽에 얹어 먹으며 시작되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox3" value="O"> O</label>
+            <label><input type="radio" name="q_ox3" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox3', 'X', '정답입니다! 피자가 처음 시작된 도시는 베네치아가 아니라 이탈리아 남부의 \'나폴리\'입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 4 -->
+    <div class="question-block" id="ox4">
+        <div class="question-title">4. '카프레제(caprese)'는 빵 조각 위에 토마토, 바질, 버섯, 마늘 등 여러 가지 다양한 토핑을 올려 먹는 대표적인 애피타이저이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox4" value="O"> O</label>
+            <label><input type="radio" name="q_ox4" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox4', 'X', '정답입니다! 빵 위에 토핑을 얹어 먹는 음식은 \'브루스케타(bruschetta)\'입니다. 카프레제는 신선한 토마토와 모차렐라로 만든 샐러드입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 5 -->
+    <div class="question-block" id="ox5">
+        <div class="question-title">5. 육수에 양파, 샐러리, 당근, 토마토 등의 여러 가지 채소와 콩을 넣고 푹 끓여 만든 이탈리아식 야채수프는 '미네스트로네(minestrone)'이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox5" value="O"> O</label>
+            <label><input type="radio" name="q_ox5" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox5', 'O', '정답입니다! 미네스트로네는 이탈리아인들이 즐겨 먹는 풍성한 채소 수프 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 6 -->
+    <div class="question-block" id="ox6">
+        <div class="question-title">6. '고르곤졸라(gorgonzola)'는 양젖을 오래 숙성시켜 만드는 단단한 경질 치즈로 고대 로마 시대부터 생산되었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox6" value="O"> O</label>
+            <label><input type="radio" name="q_ox6" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox6', 'X', '정답입니다! 고르곤졸라는 \'소젖\'으로 만드는 블루치즈입니다. 양젖을 숙성시켜 만드는 오래된 경질 치즈는 \'페코리노(pecorino)\'입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 7 -->
+    <div class="question-block" id="ox7">
+        <div class="question-title">7. 이탈리아인들의 일상 식사 중 전통적으로 가장 푸짐하고 무겁게 챙겨 먹는 정찬 스타일의 식사는 점심이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox7" value="O"> O</label>
+            <label><input type="radio" name="q_ox7" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox7', 'O', '정답입니다! 이탈리아인들은 아침은 빵과 커피로 간단히 때우고 전통적으로 점심을 가장 푸짐하게 먹습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 8 -->
+    <div class="question-block" id="ox8">
+        <div class="question-title">8. '그라파(grappa)'는 포도즙을 짜내고 남은 찌꺼기(포메이스)를 발효 및 증류시켜 만든 브랜디의 일종으로, 본래 농부들이 마시던 술이었다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox8" value="O"> O</label>
+            <label><input type="radio" name="q_ox8" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox8', 'O', '정답입니다! 그라파는 포도 찌꺼기를 활용해 만든 독한 증류주로 오늘날에는 우아한 미식 식후주로 발전했습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 9 -->
+    <div class="question-block" id="ox9">
+        <div class="question-title">9. 아랍의 음료이던 커피를 유럽 전역에 널리 전파하는 데 중심 역할을 한 사람들은 베네치아의 상인들이다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox9" value="O"> O</label>
+            <label><input type="radio" name="q_ox9" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox9', 'O', '정답입니다! 14세기 말엽 지중해 무역을 장악한 베네치아 상인들이 오스만 투르크와의 교역을 통해 커피를 들여와 유럽에 전파했습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- OX 10 -->
+    <div class="question-block" id="ox10">
+        <div class="question-title">10. 이탈리아인들은 가정이나 사무실에서 에스프레소를 직접 추출해 마실 때 주로 '사이폰(syphon)' 기구를 사용한다.</div>
+        <div class="options">
+            <label><input type="radio" name="q_ox10" value="O"> O</label>
+            <label><input type="radio" name="q_ox10" value="X"> X</label>
+        </div>
+        <button class="check-btn" onclick="checkRadio('ox10', 'X', '정답입니다! 이탈리아 가정의 필수품이자 손수 에스프레소를 만들어 마실 때 쓰는 도구는 \'모카포트(moka pot)\'입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         II. 단답형 문제 (10문항)
+         ========================================== -->
+    <h2>II. 단답형 문제</h2>
+
+    <!-- 단답 1 -->
+    <div class="question-block" id="short1">
+        <div class="question-title">1. 남미가 원산지이며 이탈리아 식문화, 특히 파스타 소스나 피자에 없어서는 안 될 필수 외래 작물로 자리 잡은 이 붉은 채소(과일)의 이름은 무엇인가?</div>
+        <input type="text" id="input_short1" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short1', ['토마토', 'tomato'], '정답: 토마토 | 외래 작물 중 산 마르자노 등의 품종으로 수용되어 이탈리아 요리의 핵심이 되었습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 2 -->
+    <div class="question-block" id="short2">
+        <div class="question-title">2. 이탈리아 베네치아의 산마르코 광장에 위치한 가장 오래된 카페로 괴테, 바이런, 루소, 나폴레옹 등 수많은 명사들이 찾았던 유럽 카페의 효시는 어디인가?</div>
+        <input type="text" id="input_short2" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short2', ['카페 플로리안', '카페플로리안', 'caffe florian'], '정답: 카페 플로리안(Caffè Florian) | 1720년에 개업하여 베네치아의 상징으로 여겨지는 유서 깊은 카페입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 3 -->
+    <div class="question-block" id="short3">
+        <div class="question-title">3. 이탈리아 나폴리가 원산지인 치즈로 흔히 '피자 치즈'로 널리 알려져 있으며, 전통적으로 물소 젖을 사용해 만드는 생치즈의 이름은 무엇인가?</div>
+        <input type="text" id="input_short3" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short3', ['모차렐라', '모짜렐라', 'mozzarella'], '정답: 모차렐라(Mozzarella) | 찰기가 있고 부드러우며 토마토, 바질과 함께 마르게리타 피자의 핵심 재료입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 4 -->
+    <div class="question-block" id="short4">
+        <div class="question-title">4. 지중해 문화에서 불멸, 평화, 다산, 힘, 승리 등의 성스러운 의미를 지니며, 버터 대신 요리유로 사용되거나 절임 형태로 밥상에 빠지지 않고 올라가는 핵심 작물은 무엇인가?</div>
+        <input type="text" id="input_short4" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short4', ['올리브', 'olive'], '정답: 올리브 | 청동기 시대부터 재배된 인류 고대 작물로, 이탈리아 식탁의 필수 요소입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 5 -->
+    <div class="question-block" id="short5">
+        <div class="question-title">5. '나를 들어 올리다(기분 좋게 하다)'라는 어원을 가지며, 커피에 적신 스폰지케이크 위에 마스카포네 치즈를 얹고 초콜릿 가루를 뿌려 만든 이탈리아의 가장 인기 있는 디저트는 무엇인가?</div>
+        <input type="text" id="input_short5" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short5', ['티라미수', '티라미슈', 'tiramisu'], '정답: 티라미수(Tiramisu) | 어원은 Tirare(끌다) + mi(나를) + su(위로)에서 유래한 달콤한 후식입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 6 -->
+    <div class="question-block" id="short6">
+        <div class="question-title">6. 골수가 든 송아지 뒷다리 정강이뼈 부위를 잘라 토마토와 백포도주를 부어 푹 익혀낸 북부 밀라노 지역의 대표적인 고기 찜 요리는 무엇인가?</div>
+        <input type="text" id="input_short6" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short6', ['오소부코', '오소 부코', 'ossobuco'], '정답: 오소부코(Ossobuco) | 진한 맛의 정강이 뼈 스튜 요리로 밀라노식 리조또와 훌륭한 궁합을 이룹니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 7 -->
+    <div class="question-block" id="short7">
+        <div class="question-title">7. 돼지 볼기살 등을 통째로 소금에 절여 건조 및 숙성시켜 만든 생햄으로, 이탈리아인들의 식탁이나 에피타이저에 멜론 등과 함께 자주 등장하는 육가공품은 무엇인가?</div>
+        <input type="text" id="input_short7" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short7', ['프로슈토', 'prosciutto'], '정답: 프로슈토(Prosciutto) | 스페인의 하몬, 프랑스의 바이온 햄과 더불어 세계적인 생햄으로 평가받습니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 8 -->
+    <div class="question-block" id="short8">
+        <div class="question-title">8. 이탈리아 정찬 코스 순서에서 파스타, 리조또, 또는 수프(미네스트로네) 등이 제공되는 '첫 번째 접시(요리)' 단계를 뜻하는 명칭은 무엇인가?</div>
+        <input type="text" id="input_short8" placeholder="정답을 입력하지 않아으로 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short8', ['프리모', '프리모 피아토', 'primo', 'primo piatto'], '정답: 프리모(Primo piatto) | 에피타이저인 안티파스토 다음 단계로 제공되는 탄수화물 위주의 첫 번째 코스 요리입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 9 -->
+    <div class="question-block" id="short9">
+        <div class="question-title">9. 이탈리아 남부 아말피, 나폴리, 소렌토 지역에서 주로 생산되며, 레몬 껍질을 사용하여 상큼한 향과 달콤함을 더한 노란색의 유명한 식후 리큐르는 무엇인가?</div>
+        <input type="text" id="input_short9" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short9', ['리몬첼로', 'limoncello'], '정답: 리몬첼로(Limoncello) | 소화를 돕기 위해 식사 후 아주 차갑게 해서 마시는 남부의 대표적인 레몬 리큐르입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 단답 10 -->
+    <div class="question-block" id="short10">
+        <div class="question-title">10. 우유와 크림을 섞은 것에 젤라틴을 넣어 탱글탱글하고 부드럽게 굳혀 과일 시럽 등과 함께 차게 즐기는 이탈리아의 대표 푸딩식 후식은 무엇인가?</div>
+        <input type="text" id="input_short10" placeholder="정답을 입력하지 않아도 확인 가능합니다.">
+        <p></p>
+        <button class="check-btn" onclick="checkShort('short10', ['판나코타', '판나 코타', 'panna cotta'], '정답: 판나코타(Panna cotta) | 티라미수와 함께 큰 인기를 누리는 부드러운 유제품 기반 디저트입니다.')">정답 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+
+    <!-- ==========================================
+         III. 서술형 문제 (3문항)
+         ========================================== -->
+    <h2>III. 서술형 문제</h2>
+
+    <!-- 서술 1 -->
+    <div class="question-block" id="essay1">
+        <div class="question-title">1. 이탈리아 요리의 대전제이자 특징을 가장 잘 대변하는 격언인 &quot;가장 훌륭한 요리는 요리하지 않은 요리다&quot;라는 말에 담긴 실제 조리 상의 철학과 맛내기 경향성을 설명하시오.</div>
+        <textarea id="input_essay1" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay1', '이 격언은 인위적인 복잡한 양념이나 과도한 가공을 배제하고, 식재료 본래가 가진 신선한 맛과 향을 최대한 살리는 것을 최우선으로 삼는 이탈리아 요리의 철학을 뜻합니다. 향신료나 소스를 무겁게 쓰기보다는 품질 좋은 올리브유, 신선한 토마토, 바질, 마늘 등 최소한의 기본 양념 조합만을 사용해 산뜻하고 자연스러운 풍미를 이끌어내는 경향성을 가집니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 2 -->
+    <div class="question-block" id="essay2">
+        <div class="question-title">2. 이탈리아인들의 독특한 커피 마시기 문화를 시간대별 선호하는 종류(아침 vs 점심/저녁 식후) 및 일상 속 카페테리아 이용 방식의 특징을 포함하여 서술하시오.</div>
+        <textarea id="input_essay2" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay2', '이탈리아인들은 아침 식사로 코르네토 같은 빵을 곁들일 때는 주로 우유가 들어간 카푸치노나 카페라테를 마시는 반면, 점심이나 저녁 식사를 마친 후에는 소화를 돕기 위해 우유 없이 깔끔한 에스프레소를 마시는 뚜렷한 규칙성이 있습니다. 또한 활력을 충전하고 소통하는 공간인 카페테리아에 들러 테이블에 오래 앉아있기보다 잠깐 일어선 채로 커피를 빠르게 마시며 대화를 나누는 일상적 특징이 있습니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+    <!-- 서술 3 -->
+    <div class="question-block" id="essay3">
+        <div class="question-title">3. 이탈리아 정찬(코스 요리)의 전체적인 구성 단계 중, 메인 코스인 '세콘도 피아토(Secondo piatto)'와 함께 제공되는 '콘토르노(Contorno)'의 성격 및 정찬의 시작과 끝을 장식하는 음료 종류(식전주와 식후주)에 대해 서술하시오.</div>
+        <textarea id="input_essay3" placeholder="답안을 작성하지 않아도 모범답안을 확인할 수 있습니다."></textarea>
+        <button class="check-btn" onclick="checkEssay('essay3', '정찬 코스에서 주요리인 \'세콘도 피아토\'는 대개 고기나 생선 요리로 구성되며, 여기에 곁들이는 채소나 감자 요리 등의 사이드 메뉴를 \'콘토르노\'라고 부릅니다. 정찬의 시작을 알리는 식전주(아페리티보)로는 입맛을 돋우기 위해 발포성 화이트 와인인 스푸만테나 쓴맛이 나는 캄파리 등을 주로 마시고, 정찬의 끝을 마무리하는 식후주(디제스티보)로는 소화를 돕기 위해 독한 증류주인 그라파나 달콤하고 강한 레몬 향의 리몬첼로, 허브 향의 아마로 등을 마십니다.')">모범답안 확인</button>
+        <div class="result-box"></div>
+    </div>
+
+</div>
+
+<script>
+    // 라디오 버튼(OX) 정답 체크 함수
+    function checkRadio(qId, correctVal, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const selected = block.querySelector(`input[name="q_${qId}"]:checked`);
+        const resultBox = block.querySelector('.result-box');
+        
+        if (!selected) {
+            alert("정답을 선택해주세요!");
+            return;
+        }
+
+        resultBox.style.display = "block";
+        if (selected.value === correctVal) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 다시 한번 생각해보세요! <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 단답형 정답 체크 함수
+    function checkShort(qId, correctArray, scoreExplanation) {
+        const block = document.getElementById(qId);
+        const inputVal = document.getElementById(`input_${qId}`).value.trim().toLowerCase().replace(/\s/g, "");
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+
+        if (inputVal === "") {
+            resultBox.className = "result-box essay-result";
+            resultBox.innerHTML = "미입력 상태의 정답 및 해설입니다. <div class='explanation'>" + scoreExplanation + "</div>";
+            return;
+        }
+
+        let isCorrect = false;
+        for (let i = 0; i < correctArray.length; i++) {
+            if (inputVal === correctArray[i].toLowerCase().replace(/\s/g, "")) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            resultBox.className = "result-box correct";
+            resultBox.innerHTML = "정답입니다! <div class='explanation'>" + scoreExplanation + "</div>";
+        } else {
+            resultBox.className = "result-box incorrect";
+            resultBox.innerHTML = "오답입니다. 입력하신 답을 확인해주세요. <div class='explanation'>" + scoreExplanation + "</div>";
+        }
+    }
+
+    // 서술형 모범답안 확인 함수
+    function checkEssay(qId, modelAnswer) {
+        const block = document.getElementById(qId);
+        const resultBox = block.querySelector('.result-box');
+
+        resultBox.style.display = "block";
+        resultBox.className = "result-box essay-result";
+        resultBox.innerHTML = "모범답안을 확인하고 학습해보세요.<br><br><span style='color:#111;'>[모범 답안]</span><div class='explanation' style='color:#222; font-weight:bold; margin-top:5px;'>" + modelAnswer + "</div>";
+    }
+</script>
+
+</body>
+</html>
+
